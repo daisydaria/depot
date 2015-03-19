@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Название:
+  = @product.name
+%p
+  %b Описание:
+  = @product.description
+%p
+  %b Цена:
+  = number_to_currency(@product.price)
+%p
+  %b Вес:
+  = @product.weight
+
+= link_to 'Редактировать', edit_product_path(@product)
+\|
+= link_to 'Назад', products_path
