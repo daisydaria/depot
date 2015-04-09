@@ -1,0 +1,29 @@
+%p#notice= notice
+%h1 Ваш заказ
+%ul.list-group
+  .li.list-group-item-info
+    %b
+      .row
+        .col-md-3
+          Наименование
+        .col-md-3
+          Количество
+        .col-md-2
+          Стоимость
+        .col-md-2
+          Общая сумма
+  - @cart.line_items.each do |line_item|
+    %li.list-group-item
+      .row
+        .col-md-3
+          =line_item.product.name
+        .col-md-3
+          =line_item.quanitem
+        .col-md-2
+          =number_to_currency(line_item.price, locale: :ru)
+        .col-md-2
+          =number_to_currency(line_item.quanitem*line_item.price,locale: :ru)
+        .col-md-1
+          =link_to 'Удалить', line_item_path(line_item),class:"glyphicon glyphicon-remove", :method => :delete, :data => { :confirm => 'Вы уверены?' }
+
+= link_to 'Назад', products_path

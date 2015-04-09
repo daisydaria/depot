@@ -1,0 +1,23 @@
+%p#notice= notice
+
+%p
+  %b Название:
+  = @product.name
+%p
+  %b Описание:
+  = @product.description
+%p
+  %b Цена:
+  = @product.price
+%p
+  %b Вес:
+  = @product.weight
+
+=link_to line_items_path(product_id:@product.id), data:{method: :post}, class: "btn btn-info" do
+  .span.glyphicon.glyphicon-plus
+=link_to line_item_path(product_id:@product.id), data:{method: :delete}, class: "btn btn-danger" do
+  .span.glyphicon.glyphicon-minus
+
+= link_to 'Изменить', edit_product_path(@product)
+\|
+= link_to 'Назад', products_path

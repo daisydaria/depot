@@ -1,0 +1,26 @@
+$body-bg: #eee;
+
+
+
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+.alert-notice {
+  @extend .alert-success
+}
+
+
+#gopa{
+  height: 100px;
+  background: #1A4780;
+  color:#fff;
+  border-radius: 5px;
+}
+
+
+.field_with_errors {
+  @extend .has-error;
+}
+

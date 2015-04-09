@@ -1,0 +1,52 @@
+%h1 Список продуктов
+= paginate @products
+
+%ul.list-group
+  %div.list-group-item-info
+    .row
+      .col-md-2
+        .span.glyphicon.glyphicon-certificate
+          Название
+      .col-md-3
+        .span.glyphicon.glyphicon-th-list
+          Описание
+      .col-md-2
+        .span.glyphicon.glyphicon-ruble
+          Цена
+      .col-md-1
+        .span.glyphicon.glyphicon-shopping-cart
+          Вес
+      .col-md-1
+        .span.glyphicon.glyphicon-expand
+      .col-md-1
+        .span.glyphicon.glyphicon-wrench
+      .col-md-1
+        .span.glyphicon.glyphicon-remove
+      .col-md-1
+        .span.glyphicon.glyphicon-plus
+
+  %br
+    -@products.each do |product|
+      %li.list-group-item
+        .row
+          .col-md-2
+            = product.name
+          .col-md-3
+            = product.description
+          .col-md-2
+            = number_to_currency(product.price)
+          .col-md-1
+            = product.weight
+
+          .col-md-1
+            = link_to 'Посмотреть', product,  class: 'btn btn-info btn-xs'
+          .col-md-1
+            = link_to 'Изменить', edit_product_path(product),  class: 'btn btn-success btn-xs'
+          .col-md-1
+            = link_to 'Удалить', product, :method => :delete, :data => { :confirm => 'Вы уверены?' },  class: 'btn btn-danger btn-xs'
+          .col-md-1
+            =link_to "В корзину", line_items_path(product_id:product.id), data:{method: :post}, class: 'btn btn-warning btn-xs'
+
+%br
+  = paginate @products
+  = link_to 'Новый продукт', new_product_path
